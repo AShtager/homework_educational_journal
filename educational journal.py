@@ -15,3 +15,9 @@ class Mentor:
         self.courses_attached = []
 
 
+class Lecturer(Mentor):
+    pass
+
+
+class Reviewer(Mentor):
+    pass
