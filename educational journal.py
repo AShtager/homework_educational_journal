@@ -23,11 +23,12 @@ class Mentor:
         self.name = name
         self.surname = surname
         self.courses_attached = []
-        self.grades = {}
 
 
 class Lecturer(Mentor):
-    pass
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+        self.grades = {}
 
 
 class Reviewer(Mentor):
@@ -39,3 +40,5 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+
+
