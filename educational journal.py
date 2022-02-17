@@ -17,6 +17,15 @@ class Student:
         else:
             return 'Ошибка'
 
+    def ave_est(self):
+        for course, estimation in self.grades.items():
+            res = sum(estimation) / len(estimation)
+            return res
+
+    def __str__(self):
+        return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашнее задание: {self.ave_est():.2f}\n' \
+               f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\nЗавершенные курсы: {", ".join(self.finished_courses)}'
+
 
 class Mentor:
     def __init__(self, name, surname):
@@ -30,6 +39,14 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         self.grades = {}
 
+    def ave_est(self):
+        for course, estimation in self.grades.items():
+            res = sum(estimation) / len(estimation)
+            return res
+
+    def __str__(self):
+        return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.ave_est():.2f}'
+
 
 class Reviewer(Mentor):
     def estimation(self, student, course, grade):
@@ -41,4 +58,6 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'
 
+    def __str__(self):
+        return f'Имя: {self.name}\nФамилия: {self.surname}'
 
