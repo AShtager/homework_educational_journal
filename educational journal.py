@@ -26,6 +26,14 @@ class Student:
         return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашнее задание: {self.ave_est():.2f}\n' \
                f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\nЗавершенные курсы: {", ".join(self.finished_courses)}'
 
+    def __lt__(self, other):
+        if isinstance(other, Lecturer):
+            return self.ave_est() > other.ave_est()
+
+    def __eq__(self, other):
+        if isinstance(other, Lecturer):
+            return self.ave_est() == other.ave_est()
+
 
 class Mentor:
     def __init__(self, name, surname):
@@ -60,4 +68,5 @@ class Reviewer(Mentor):
 
     def __str__(self):
         return f'Имя: {self.name}\nФамилия: {self.surname}'
+
 
