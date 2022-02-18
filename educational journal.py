@@ -70,3 +70,80 @@ class Reviewer(Mentor):
         return f'Имя: {self.name}\nФамилия: {self.surname}'
 
 
+def student_rating(list_, course_name):
+    sum_all = 0
+    count_all = 0
+    for stud in list_:
+        if stud.courses_in_progress == [course_name]:
+            sum_all += stud.ave_est()
+            count_all += 1
+        else:
+            return
+    average_for_all = sum_all / count_all
+    return f"Средняя оценка для всех студентов на курсе {course_name}: {average_for_all:.2f}"
+
+
+def lecturer_rating(list_, course_name):
+    sum_all = 0
+    count_all = 0
+    for lect in list_:
+        if lect.courses_attached == [course_name]:
+            sum_all += lect.ave_est()
+            count_all += 1
+        else:
+            return
+    average_for_all = sum_all / count_all
+    return f"Средняя оценка для всех лекторов по курсу {course_name}: {average_for_all:.2f}"
+
+
+peter = Student('Peter', 'Dinklage', 'Man')
+peter.finished_courses += ['GIt']
+peter.courses_in_progress += ['Python']
+
+lena = Student('Lena', 'Kathren', 'Woman')
+lena.finished_courses += ['1C']
+lena.courses_in_progress += ['Python']
+
+emi = Lecturer('Emilia', 'Clarke')
+emi.courses_attached += ['Python']
+
+kit = Lecturer('Christopher', 'Harington')
+kit.courses_attached += ['Python']
+
+soph = Reviewer('Sophie', 'Jonas')
+soph.courses_attached += ['Python']
+
+john = Reviewer('John', 'Bradley')
+john.courses_attached += ['Python']
+
+soph.estimation(peter, 'Python', 9)
+soph.estimation(peter, 'Python', 10)
+soph.estimation(peter, 'Python', 7)
+
+john.estimation(lena, 'Python', 8)
+john.estimation(lena, 'Python', 7)
+john.estimation(lena, 'Python', 10)
+
+peter.estimation(emi, 'Python', 10)
+peter.estimation(emi, 'Python', 9)
+peter.estimation(emi, 'Python', 10)
+
+lena.estimation(kit, 'Python', 8)
+lena.estimation(kit, 'Python', 9)
+lena.estimation(kit, 'Python', 9)
+
+study_list = [peter, lena]
+lect_list = [emi, kit]
+
+print(soph.__str__(), "\n")
+print(john.__str__(), "\n")
+print(emi.__str__(), "\n")
+print(kit.__str__(), "\n")
+print(peter.__str__(), "\n")
+print(lena.__str__(), "\n")
+print(peter.__eq__(kit), "\n")
+print(lena.__lt__(emi), "\n")
+print(student_rating(study_list, 'Python'), "\n")
+print(lecturer_rating(lect_list, 'Python'), "\n")
+
+
